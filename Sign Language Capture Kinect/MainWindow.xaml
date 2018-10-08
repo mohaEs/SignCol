@@ -1,0 +1,68 @@
+﻿<Window x:Class="Sign_Language_Capture_Kinnect.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="SignCol"
+             Width="480" Height="290"
+        ResizeMode="CanMinimize"
+        BorderThickness="1"
+        WindowStartupLocation="CenterScreen"
+        Closing="MetroWindow_Closing"
+        Loaded="Window1_OnLoaded" Icon="Resources/images/IconP.png">
+    <Grid Margin="0,0,5,0" Width="Auto">
+
+
+        <WrapPanel Margin="24,73,10,41">
+            <WrapPanel.Resources>
+                <Style TargetType="{x:Type Rectangle}">
+                    <Setter Property="Width"
+                    Value="80" />
+                    <Setter Property="Height"
+                    Value="80" />
+                    <Setter Property="Margin"
+                    Value="3" />
+                    <Setter Property="Fill"
+                    Value="#4DB4DD" />
+                </Style>
+            </WrapPanel.Resources>
+
+            <Grid Width="172.071">
+                <Rectangle x:Name="RectSelectSettings" Cursor="Hand" Width="159.21"
+                           MouseUp="RectSelectSettings_MouseUp" Margin="0,10,12.861,-22.964" Height="Auto" >
+                </Rectangle>
+                <TextBlock x:Name="textBlockSettings" Cursor="Hand" Margin="0,0,26.362,-7.48" 
+                           TextWrapping="Wrap" Foreground="White" TextAlignment="Center"
+                           MouseUp="textBlockSettings_MouseUp" Height="33.747" VerticalAlignment="Bottom" FontWeight="Bold" d:LayoutOverrides="VerticalAlignment">
+                    <Run Text="Settings - Definitions"/><LineBreak/>
+
+                </TextBlock>
+                <Image x:Name="image" Margin="52.667,24,64.738,40.601" Cursor="Hand" MouseUp="RectSelectSettings_MouseUp" Source="Resources/images/settings-icon-11.png"/>
+            </Grid>
+            <Grid Width="Auto">
+                <Rectangle x:Name="RectKinectCapture" Cursor="Hand" Margin="3.335,10.411,12.952,-22.298" Width="Auto"
+            		MouseUp="RectKinectCapture_MouseUp" Height="Auto">
+                </Rectangle>
+                <TextBlock x:Name="textBlockSelectKinect" Cursor="Hand" Margin="14.669,0,26.425,-7.789" MouseUp="RectKinectCapture_MouseUp"
+            		TextWrapping="Wrap" Foreground="White" Height="32.521" VerticalAlignment="Bottom" FontWeight="Bold"><Run Text="Capture by Kinect"/><LineBreak/></TextBlock>
+                <Image x:Name="image1" Margin="32.596,30.667,39.597,43.267" Source="Resources/images/kinect capture.png" Cursor="Hand" MouseUp="RectKinectCapture_MouseUp"/>
+            </Grid>
+            <Grid>
+                <Rectangle x:Name="RectAboutUS" Cursor="Hand" Margin="8.124,10,9.412,-21.054" Height="Auto">
+                </Rectangle>
+                <TextBlock x:Name="textBlockSelectAbout" Cursor="Hand" Margin="27.482,0,26.518,-9.642" TextWrapping="Wrap" 
+            		TextAlignment="Center" FontWeight="Bold" Height="35.654" VerticalAlignment="Bottom"><Run Foreground="White" Text="About"/><LineBreak/></TextBlock>
+                <Image x:Name="image2" Margin="27.482,42.671,26.518,50.329" Cursor="Hand" Source="Resources/images/about.png"/>
+            </Grid>
+
+
+
+        </WrapPanel>
+        <TextBlock x:Name="textBlock" Height="23" Margin="102,47,67,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FF4DB4DD" Text="Sign Language Capturing Software by Kinect V2"/>
+        <TextBlock x:Name="textBlock_Copy" Height="23" Margin="161,32,160,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FF4DB4DD" Text="Sign Collector" HorizontalAlignment="Center" FontSize="13" Width="146" TextAlignment="Center" FontWeight="Bold" FontFamily="Tekton Pro Ext"/>
+        <TextBlock x:Name="textBlock1" Height="31" Margin="67,3,63,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FF4DB4DD" Text="--------------SignCol--------------" HorizontalAlignment="Center" FontWeight="Bold" FontSize="22" Width="337" TextAlignment="Center"/>
+    </Grid>
+</Window>
+

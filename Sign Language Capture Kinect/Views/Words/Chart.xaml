@@ -1,0 +1,55 @@
+﻿<Window x:Class="Sign_Language_Capture_Kinnect.Views.Words.Chart"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+			 xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
+             mc:Ignorable="d"
+             xmlns:oxy="http://oxyplot.org/wpf"
+             xmlns:vc="clr-namespace:DbModel.ValueConvert;assembly=DbModel"
+             xmlns:ctrl="clr-namespace:DbModel.Command;assembly=DbModel" 
+             xmlns:local="clr-namespace:Sign_Language_Capture_Kinnect.Views.Words"
+             xmlns:vm="clr-namespace:DbModel.ViewModel.WordsVM;assembly=DbModel"
+             d:DataContext="{d:DesignInstance vm:ChartVM}" 
+             FontFamily="Tahoma" xml:lang="Fa-IR"
+             Width="1169.035" Height="500"
+             xmlns:local2="clr-namespace:Sign_Language_Capture_Kinnect.Views"
+             WindowStartupLocation="CenterScreen" Icon="IconP.png" Title="Charts">
+    <Window.Resources>
+
+    </Window.Resources>
+    <Grid>
+        <Grid Margin="27.102,0,0,42.616" HorizontalAlignment="Left" Width="428.865" 
+              d:LayoutOverrides="HorizontalAlignment" Height="344" VerticalAlignment="Bottom">
+            <Border 
+                    BorderBrush="#FF003655"  BorderThickness="3,3,3,3" CornerRadius="20,20,20,20" Background="#FFD2EAF3" Margin="10,15.707,10,26.989"/>
+
+            <oxy:Plot                  
+                  LegendPlacement="Outside" LegendPosition="RightTop" LegendOrientation="Vertical"
+                  Margin="27.046,0,0,43.99" HorizontalAlignment="Left" Width="370.58" Height="240.307" VerticalAlignment="Bottom" 
+                      FontFamily="Times New Roman" >
+                <oxy:Plot.Background>
+                    <RadialGradientBrush>
+                        <GradientStop Color="#FFE8E8E8" Offset="0"/>
+                        <GradientStop Color="#FFD2EAF3" Offset="1"/>
+                    </RadialGradientBrush>
+                </oxy:Plot.Background>
+                <oxy:Plot.Axes>
+                    <oxy:CategoryAxis Position="Bottom" ItemsSource="{Binding Items}" LabelField="Label"/>
+                    <oxy:LinearAxis Position="Left" MinimumPadding="0" AbsoluteMinimum="0"/>
+                </oxy:Plot.Axes>
+                <oxy:Plot.Series>
+                    <oxy:ColumnSeries ItemsSource="{Binding Items}" ValueField="Value1"/>
+                </oxy:Plot.Series>
+            </oxy:Plot>
+            <Label x:Name="label0" Content="Definition Status of Items" 
+                   FontWeight="Bold" 
+                   HorizontalAlignment="Right" Height="37.029" Margin="0,0,72.434,291.264" VerticalAlignment="Bottom" Width="293.144"/>
+        </Grid>
+        <Label x:Name="label1" Content="Cat1  ---- Numbers &lt; 10&#xA;Cat2  ---- Numbers &gt; 10&#xA;Cat3  ---- Letters&#xA;Cat4  ---- Words by Sign&#xA;Cat5  ---- Words by Letters&#xA;Cat6  ---- Sentence by Words&#xA;Cat7  ---- Sentence by Signs&#xA;Cat8  ---- Arbitary Sentences" HorizontalAlignment="Right" Height="135" Margin="0,0,483.718,160.952" VerticalAlignment="Bottom" Width="183"/>
+        <local2:MsChart x:Name="chart1" ChartBackground="Blue" HorizontalAlignment="Left" Width="443.209" Margin="683.737,73.864,0,51.136"/>
+    </Grid>
+
+</Window>

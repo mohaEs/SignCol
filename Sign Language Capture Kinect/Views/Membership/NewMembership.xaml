@@ -1,0 +1,75 @@
+﻿<Window x:Class="Sign_Language_Capture_Kinnect.Views.Membership.NewMembership"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Sign_Language_Capture_Kinnect.Views.Membership"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             mc:Ignorable="d" 
+             xmlns:vm="clr-namespace:DbModel.ViewModel.UserVM;assembly=DbModel"
+             xmlns:vc="clr-namespace:DbModel.ValueConvert;assembly=DbModel"
+             xmlns:ctrl="clr-namespace:DbModel.Command;assembly=DbModel" 
+			 xmlns:mvvm="http://www.galasoft.ch/mvvmlight"
+             d:DataContext="{d:DesignInstance vm:User_ViewModel}"
+             FontFamily="Tahoma" xml:lang="Fa-IR"
+             Width="500" Height="500" Closing="Window_Closing"
+             WindowStartupLocation="CenterScreen" Icon="IconP.png" Title="Insert New Perfromer">
+    <Window.Resources>
+        <!-- Value Converters -->
+        <vc:ToIntConverter x:Key="ToIntConverter"/>
+    </Window.Resources>
+    <Grid Margin="30 30 30 30">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="5*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Label Content="Name  ----------&gt;" Grid.Row="0" Grid.Column="0" Foreground="#FF4355C7" FontWeight="Bold" ></Label>
+        <Label Content="Age  ----------&gt;" Grid.Row="1" Grid.Column="0" FontWeight="Bold" Foreground="#FF4355C7" ></Label>
+        <Label Content="Phone ----------&gt;" Grid.Row="2" Grid.Column="0" Foreground="#FF4355C7" FontWeight="Bold" ></Label>
+
+        <StackPanel  Grid.Row="0" Grid.Column="1" Margin="0,-10,0,10">
+            <TextBlock Name="pid" Text="{Binding userData.User_id}"></TextBlock>
+
+            <TextBox Name="Name" Controls:TextBoxHelper.Watermark="Name"
+                Text="{Binding userData.Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, Mode=TwoWay}"/>
+
+        </StackPanel>
+        <StackPanel  Grid.Row="1" Grid.Column="1">
+            <TextBox Name="Age" Controls:TextBoxHelper.Watermark="Name"
+                Text="{Binding userData.Age, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, Mode=TwoWay}"/>
+        </StackPanel>
+
+        <StackPanel  Grid.Row="2" Grid.Column="1">
+            <TextBox Name="Phone" Controls:TextBoxHelper.Watermark="Name"
+                Text="{Binding userData.Phone, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, Mode=TwoWay}"/>
+        </StackPanel>
+
+        <StackPanel  Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right">
+            <TextBlock Text="{Binding userData.ValidationErrorsString}" Foreground="Red" Margin="0,5,0,0" />
+        </StackPanel>
+        <StackPanel  Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right">
+
+            <Button Width="100" Content="Update"
+                         Command="{Binding userData.UpdateCommand}"
+                         Style="{DynamicResource SquareButtonStyle}" Foreground="#FF4355C7" BorderBrush="#FFB3C9F9"/>
+
+            <Button Width="132" Content="Insert"
+                         Command="{Binding userData.InsertCommand}" 
+                         Style="{DynamicResource SquareButtonStyle}" Foreground="#FF4355C7" BorderBrush="#FFB3C9F9"/>
+
+            <Button Width="100" Content="Delete"
+                         Command="{Binding userData.DeleteCommand}" 
+                         Style="{DynamicResource SquareButtonStyle}" Foreground="#FF4355C7" BorderBrush="#FFB3C9F9"/>
+
+        </StackPanel>
+        <Image x:Name="image" Margin="28.298,30.864,21.845,-117.696" Grid.Row="3" Source="newperformer.png"/>
+    </Grid>
+</Window>

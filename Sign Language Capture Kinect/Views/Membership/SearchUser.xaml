@@ -1,0 +1,129 @@
+﻿<Window x:Class="Sign_Language_Capture_Kinnect.Views.Membership.SearchUser"
+            xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+			 xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:local="clr-namespace:Sign_Language_Capture_Kinnect.Views.Membership"          
+             mc:Ignorable="d" 
+             xmlns:vc="clr-namespace:DbModel.ValueConvert;assembly=DbModel"
+             xmlns:ctrl="clr-namespace:DbModel.Command;assembly=DbModel" 
+			 xmlns:mvvm="http://www.galasoft.ch/mvvmlight"
+             xmlns:vm="clr-namespace:DbModel.ViewModel.UserVM;assembly=DbModel"
+             d:DataContext="{d:DesignInstance vm:User_ViewModel}"
+             FontFamily="Tahoma" xml:lang="Fa-IR"
+             Width="500" Height="500"
+             WindowStartupLocation="CenterScreen" Icon="IconP.png">
+
+    <Window.Resources>
+        <!-- Value Converters -->
+        <!--<vc:GridItemConverter x:Key="DateConverter"/>-->
+        <vc:WordTypeConverter x:Key="WordTypeConverter"/>
+        <!--<vc:GenderConverter x:Key="GenderConverter"/>
+        <vc:FamilyHistoryConverter x:Key="FamilyHistoryConverter"/>-->
+    </Window.Resources>
+
+    <Grid Margin="30 30 30 30">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+
+
+        <StackPanel  Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Right" Orientation="Horizontal">
+
+
+            <Button Width="179.288" Content="New Performer" Click="New_Click"
+                         Style="{DynamicResource SquareButtonStyle}" BorderBrush="#FFB3C9F9" Margin="0,0,0,10"/>
+
+
+
+
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="4">
+            <DataGrid Name="grid1" ItemsSource="{Binding  userData.AllUser}"
+                SelectedItem="{Binding userData.GridSelectedItem}"
+                  CanUserAddRows="False"
+                  AutoGenerateColumns="False" 
+                  AlternationCount="2" AlternatingRowBackground="#FFE9E9F2"
+            Sorting="ProductsDataGrid_Sorting"
+            TargetUpdated="ProductsDataGrid_TargetUpdated"
+            Loaded="ProductsDataGrid_Loaded" Foreground="#FFEE2121">
+                <DataGrid.Columns>
+
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Width="100" Content="Select" Click="Detail_Search_Click"
+                                    CommandParameter="{Binding User_id}"
+                                     Style="{DynamicResource SquareButtonStyle}">
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTextColumn Header="Name" Width="SizeToCells" MinWidth="125" Binding="{Binding Name}" IsReadOnly="True"  CanUserSort="False" />
+                    <DataGridTextColumn Header="Age" Width="SizeToCells" MinWidth="125" Binding="{Binding Age}" IsReadOnly="True"  CanUserSort="False" />
+                    <DataGridTextColumn Header="Phone" Width="SizeToCells" MinWidth="125" Binding="{Binding Phone}" IsReadOnly="True"  CanUserSort="False" />
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </StackPanel>
+
+
+
+
+        <StackPanel
+            Margin="4"
+            Grid.Row="2"
+            Grid.ColumnSpan="4"
+            Orientation="Horizontal"
+            HorizontalAlignment="Center">
+            <Button                
+                Margin="4,0"
+                Content="&lt;&lt;"
+                Command="{Binding userData.FirstCommand}"/>
+            <Button
+                Margin="4,0"
+                Content="&lt;"
+                Command="{Binding userData.PreviousCommand}"/>
+            <StackPanel
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <TextBlock
+                    Text="{Binding userData.Start}"/>
+                <TextBlock
+                    Text=" to "/>
+                <TextBlock
+                    Text="{Binding userData.End}"/>
+                <TextBlock
+                    Text=" of "/>
+                <TextBlock
+                    Text="{Binding userData.TotalItems}"/>
+            </StackPanel>
+            <Button
+                Margin="4,0"
+                Content="&gt;"
+                Command="{Binding userData.NextCommand}"/>
+            <Button
+                Margin="4,0"
+                Content="&gt;&gt;"
+                Command="{Binding userData.LastCommand}"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

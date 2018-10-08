@@ -1,0 +1,164 @@
+﻿<Window x:Class="Sign_Language_Capture_Kinnect.Views.Membership.AllMemberships"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+			 xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             mc:Ignorable="d" 
+             xmlns:vc="clr-namespace:DbModel.ValueConvert;assembly=DbModel"
+             xmlns:ctrl="clr-namespace:DbModel.Command;assembly=DbModel" 
+			 xmlns:mvvm="http://www.galasoft.ch/mvvmlight"
+             xmlns:local="clr-namespace:Sign_Language_Capture_Kinnect.Views"
+             xmlns:vm="clr-namespace:DbModel.ViewModel.UserVM;assembly=DbModel"
+             d:DataContext="{d:DesignInstance vm:User_ViewModel}"
+             FontFamily="Tahoma" xml:lang="Fa-IR"
+             Width="500" Height="500"
+             WindowStartupLocation="CenterScreen" Icon="IconP.png" Title="All Performers">
+
+    <Window.Resources>
+        <!-- Value Converters -->
+        <!--<vc:GridItemConverter x:Key="DateConverter"/>-->
+        <vc:WordTypeConverter x:Key="WordTypeConverter"/>
+        <!--<vc:GenderConverter x:Key="GenderConverter"/>
+        <vc:FamilyHistoryConverter x:Key="FamilyHistoryConverter"/>-->
+    </Window.Resources>
+
+    <Grid Margin="30 30 30 30">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <Border BorderBrush="Green" BorderThickness="0 0 0 3" Grid.Row="0" VerticalAlignment="Top"
+                HorizontalAlignment="Left" Grid.ColumnSpan="2">
+            <StackPanel HorizontalAlignment="Left">
+                <Button x:Name="PART_BackButton"
+                    Click="PART_BackButton_Click"
+                    Width="40"
+                    Height="40"
+                    VerticalAlignment="Bottom"
+                    Style="{DynamicResource MetroCircleButtonStyle}"
+                    FontFamily="Segoe UI Symbol"
+                    FontSize="16"
+                    DockPanel.Dock="Left">
+                    <Rectangle Width="20" Height="15">
+                        <Rectangle.Fill>
+                            <VisualBrush Stretch="Fill">
+                                <VisualBrush.Visual>
+                                    <Canvas Width="48"
+                                        Height="48"
+                                        Clip="F1 M 0,0L 48,0L 48,48L 0,48L 0,0"
+                                        UseLayoutRounding="False">
+                                        <Path Canvas.Left="12"
+                                          Canvas.Top="15"
+                                          Width="25"
+                                          Height="18"
+                                          Fill="{DynamicResource BlackBrush}"
+                                          Data="F1 M 12,22L 12,26L 28.25,26L 21,33L 27.5,33L 37,24L 27.5,15L 21,15L 28.25,22L 12,22 Z "
+                                          Stretch="Fill" />
+                                    </Canvas>
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Button.LayoutTransform>
+                        <ScaleTransform ScaleX="-1" />
+                    </Button.LayoutTransform>
+                </Button>
+                <Label x:Name="PART_Title"
+                   Margin="0 5 0 0" Content="Back"
+                   FontSize="25" />
+            </StackPanel>
+        </Border>
+
+        <StackPanel  Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button Width="179.935" Content="New Performer" Click="New_Click"
+                         Style="{DynamicResource SquareButtonStyle}" BorderBrush="#FFB3C9F9" Foreground="Black" IsDefault="True"/>
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="4">
+            <DataGrid Name="grid1" ItemsSource="{Binding  userData.AllUser}"
+                SelectedItem="{Binding userData.GridSelectedItem}"
+                  CanUserAddRows="False"
+                  AutoGenerateColumns="False" 
+                  AlternationCount="2" AlternatingRowBackground="#FFE9E9F2"
+            Sorting="ProductsDataGrid_Sorting"
+            TargetUpdated="ProductsDataGrid_TargetUpdated"
+            Loaded="ProductsDataGrid_Loaded" Foreground="#FFC72828">
+                <DataGrid.Columns>
+
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Width="100" Content="Detail" Click="Button_Click"
+                                    CommandParameter="{Binding User_id}"
+                                     Style="{DynamicResource SquareButtonStyle}">
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Name" Width="SizeToCells" MinWidth="125" Binding="{Binding Name}" IsReadOnly="True"  CanUserSort="False" />
+                    <DataGridTextColumn Header="Age" Width="SizeToCells" MinWidth="125" Binding="{Binding Age}" IsReadOnly="True" CanUserSort="False"  />
+                    <DataGridTextColumn Header="Phone" Width="SizeToCells" MinWidth="125" Binding="{Binding Phone}" IsReadOnly="True" CanUserSort="False"  />
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </StackPanel>
+
+
+
+
+        <StackPanel
+            Margin="4"
+            Grid.Row="3"
+            Grid.ColumnSpan="4"
+            Orientation="Horizontal"
+            HorizontalAlignment="Center">
+            <Button                
+                Margin="4,0"
+                Content="&lt;&lt;"
+                Command="{Binding userData.FirstCommand}"/>
+            <Button
+                Margin="4,0"
+                Content="&lt;"
+                Command="{Binding userData.PreviousCommand}"/>
+            <StackPanel
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <TextBlock
+                    Text="{Binding userData.Start}"/>
+                <TextBlock
+                    Text=" to "/>
+                <TextBlock
+                    Text="{Binding userData.End}"/>
+                <TextBlock
+                    Text=" of "/>
+                <TextBlock
+                    Text="{Binding userData.TotalItems}"/>
+            </StackPanel>
+            <Button
+                Margin="4,0"
+                Content="&gt;"
+                Command="{Binding userData.NextCommand}"/>
+            <Button
+                Margin="4,0"
+                Content="&gt;&gt;"
+                Command="{Binding userData.LastCommand}"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

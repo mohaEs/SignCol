@@ -1,0 +1,70 @@
+﻿<Window x:Class="Sign_Language_Capture_Kinnect.Views.Words.Kinnect"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+			 xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
+             mc:Ignorable="d"
+             xmlns:oxy="http://oxyplot.org/wpf"
+             xmlns:vc="clr-namespace:DbModel.ValueConvert;assembly=DbModel"
+             xmlns:ctrl="clr-namespace:DbModel.Command;assembly=DbModel" 
+             xmlns:local="clr-namespace:Sign_Language_Capture_Kinnect.Views"
+      
+       xmlns:mschart="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+              xmlns:vm="clr-namespace:DbModel.ViewModel.WordsVM;assembly=DbModel"
+                       d:DataContext="{d:DesignInstance vm:Words_ViewModel}" 
+             FontFamily="Tahoma" xml:lang="Fa-IR"
+             Height="691.508" Width="1300" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Icon="IconP.png" Title="Category Selection for Capturing ">
+
+
+    <Grid>
+        <Grid Background="White"  Height="652.508" VerticalAlignment="Top" d:LayoutOverrides="TopMargin, BottomMargin">
+
+
+            <GroupBox x:Name="groupBoxCapturing" Header="Select Item Category for Capturing&#xA; " Margin="123.989,468,125.011,0" Height="174.508" VerticalAlignment="Top">
+                <Grid Margin="0,0,-1.629,10">
+                    <Label x:Name="label" Content="Numbers" HorizontalAlignment="Left" Margin="96.8,14,0,0" Width="94.472" Foreground="#FF4DB4DD" FontWeight="Bold" FontSize="16" FontFamily="Times New Roman" Height="35.716" VerticalAlignment="Top"/>
+                    <Rectangle Fill="#4DB4DD" Margin="268.806,81.377,0,0" Cursor="Hand" HorizontalAlignment="Left" Width="150" Height="25" VerticalAlignment="Top" MouseUp="Horoof_MouseUp"/>
+                    <TextBlock x:Name="textBlockLetters" Margin="268.85,84.285,0,0" TextWrapping="Wrap" Foreground="White" FontSize="14.667" TextAlignment="Center" MouseUp="Horoof_MouseUp" Cursor="Hand" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" HorizontalAlignment="Left" Width="150" Height="22" VerticalAlignment="Top" FontFamily="Times New Roman" Text="Category 3"/>
+
+                    <Rectangle Fill="#4DB4DD" Margin="476.359,50.716,0,0" Cursor="Hand" MouseUp="words_by_eshare" Height="25" VerticalAlignment="Top" Width="150" HorizontalAlignment="Left"/>
+                    <TextBlock x:Name="textBlockWordBySign" Margin="477.634,53.404,0,0" TextWrapping="Wrap" Foreground="White" MouseUp="words_by_eshare" FontSize="14.667" TextAlignment="Center" Cursor="Hand" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" Height="22" VerticalAlignment="Top" FontFamily="Times New Roman" Text="Category 4" Width="150" HorizontalAlignment="Left"/>
+
+                    <Rectangle Fill="#4DB4DD" Margin="476.359,82.322,0,0" Cursor="Hand" MouseUp="words_by_harf" Height="25" VerticalAlignment="Top" Width="150" HorizontalAlignment="Left" d:LayoutOverrides="Width"  />
+                    <TextBlock x:Name="textBlockWordByLetters" Margin="475.916,84.285,0,0" TextWrapping="Wrap" Foreground="White" FontSize="14.667" TextAlignment="Center" MouseUp="words_by_harf" Cursor="Hand" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" Height="22" VerticalAlignment="Top" FontFamily="Times New Roman" Text="Category 5" Width="150" HorizontalAlignment="Left"/>
+
+                    <Rectangle Fill="#4DB4DD" HorizontalAlignment="Left" Height="25" Margin="64.895,50.716,0,0" VerticalAlignment="Top" Width="150" Cursor="Hand" MouseUp="number_big10_MouseUp" />
+                    <TextBlock x:Name="textBlockNumbers" HorizontalAlignment="Left" Margin="65.053,52.413,0,0" TextWrapping="Wrap" Width="150" Foreground="White" MouseUp="number_big10_MouseUp" FontSize="14.667" FontWeight="Bold" TextAlignment="Center" Cursor="Hand" RenderTransformOrigin="0.5,0.5" Height="22" VerticalAlignment="Top" FontFamily="Times New Roman" Text="Category 1"/>
+
+                    <Rectangle Fill="#4DB4DD" HorizontalAlignment="Left" Height="25" Margin="64.559,83.39,0,0" VerticalAlignment="Top" Width="150" Cursor="Hand" MouseUp="number_little10_MouseUp" />
+                    <TextBlock x:Name="textBlockHigherNumbers" Margin="64.895,86.735,0,0" TextWrapping="Wrap" Foreground="White" FontSize="14.667" TextAlignment="Center" MouseUp="number_little10_MouseUp" Cursor="Hand" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" HorizontalAlignment="Left" Width="150" Height="22" VerticalAlignment="Top" FontFamily="Times New Roman" Text="Category 2"/>
+
+                    <Rectangle Fill="#4DB4DD" Margin="0,82.643,10,0" Cursor="Hand" Width="150" HorizontalAlignment="Right" MouseUp="Custome_statement" Height="25" VerticalAlignment="Top" />
+                    <TextBlock x:Name="textBlockSentenceArbitrary" Margin="0,85.322,10,0" TextWrapping="Wrap" Foreground="White" FontSize="14.667" TextAlignment="Center" Cursor="Hand" MouseUp="Custome_statement" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" HorizontalAlignment="Right" Width="150" Height="22" VerticalAlignment="Top" FontFamily="Times New Roman" Text="Category 8"/>
+
+
+                    <Rectangle Fill="#4DB4DD" Height="25" Margin="676.143,82.643,0,0" VerticalAlignment="Top" Cursor="Hand" Width="150" HorizontalAlignment="Left" MouseUp="Sentences_by_Signs"/>
+                    <TextBlock x:Name="textBlockSentenceByWords" Margin="676.797,85.322,0,0" TextWrapping="Wrap" Foreground="White" FontSize="14.667" TextAlignment="Center" Cursor="Hand" MouseUp="Sentences_by_Signs" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" HorizontalAlignment="Left" Width="150" Height="22" VerticalAlignment="Top" FontFamily="Times New Roman" Text="Category 7"/>
+
+                    <Rectangle Fill="#4DB4DD" Height="25" Margin="676.375,50.716,0,0" VerticalAlignment="Top" Cursor="Hand" Width="150" HorizontalAlignment="Left" MouseUp="Sentences_by_Letters" />
+                    <TextBlock x:Name="textBlockSentenceByLetters" Margin="676.143,53.583,0,0" TextWrapping="Wrap" Foreground="White" FontSize="14.667" TextAlignment="Center" Cursor="Hand" MouseUp="Sentences_by_Letters" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" FontFamily="Times New Roman" Text="Category 6"/>
+                    <Label x:Name="label_Copy" Content="Letters" HorizontalAlignment="Left" Margin="314.334,15,0,0" Width="94.472" Foreground="#FF4DB4DD" FontWeight="Bold" FontSize="16" FontFamily="Times New Roman" Height="37.88" VerticalAlignment="Top"/>
+                    <Label x:Name="label_Copy1" Content="Words" Margin="0,13,439.019,0" Foreground="#FF4DB4DD" FontWeight="Bold" FontSize="16" FontFamily="Times New Roman" Height="36.716" VerticalAlignment="Top" HorizontalAlignment="Right" Width="82.808"/>
+                    <Label x:Name="label_Copy2" Content="Sentences" Margin="0,13,238.076,0" Foreground="#FF4DB4DD" FontWeight="Bold" FontSize="16" HorizontalAlignment="Right" Width="102.456" FontFamily="Times New Roman" Height="36.716" VerticalAlignment="Top"/>
+
+
+                </Grid>
+            </GroupBox>
+            <GroupBox x:Name="groupBox2" Header="Capturing Status by Kinect" Margin="123.989,26.394,125.011,0" Height="418.931" VerticalAlignment="Top">
+                <Grid>
+
+                    <Label x:Name="label1" Content="Cat1  ---- Numbers &lt; 10&#xA;Cat2  ---- Numbers &gt; 10&#xA;Cat3  ---- Letters&#xA;Cat4  ---- Words by Sign&#xD;&#xA;Cat5  ---- Words by Letters&#xD;&#xA;Cat6  ---- Sentence by Words&#xD;&#xA;Cat7  ---- Sentence by Signs&#xD;&#xA;Cat8  ---- Arbitary Sentences" HorizontalAlignment="Right" Height="135" Margin="0,0,760.5,154.918" VerticalAlignment="Bottom" Width="183"/>
+                    <local:MsChart x:Name="chart1" ChartBackground="Blue" HorizontalAlignment="Right" Width="536.5" Margin="0,36,52,32"/>
+                </Grid>
+            </GroupBox>
+
+
+        </Grid>
+    </Grid>
+</Window>

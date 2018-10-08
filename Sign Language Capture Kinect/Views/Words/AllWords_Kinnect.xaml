@@ -1,0 +1,193 @@
+﻿<Window x:Class="Sign_Language_Capture_Kinnect.Views.Words.AllWords_Kinnect"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+			 xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
+             mc:Ignorable="d"
+             xmlns:oxy="http://oxyplot.org/wpf"
+             xmlns:vc="clr-namespace:DbModel.ValueConvert;assembly=DbModel"
+             xmlns:ctrl="clr-namespace:DbModel.Command;assembly=DbModel" 
+             xmlns:local="clr-namespace:Sign_Language_Capture_Kinnect.Views"
+             xmlns:vm="clr-namespace:DbModel.ViewModel.WordsVM;assembly=DbModel"
+             d:DataContext="{d:DesignInstance vm:Words_ViewModel}" 
+             FontFamily="Tahoma" xml:lang="Fa-IR"
+             Height="520" Width="980" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="IconP.png" Title="All Items / Search" Closing="Window_Closing">
+
+    <Window.Resources>
+        <vc:WordTypeConverter x:Key="WordTypeConverter"/>
+    </Window.Resources>
+    <Grid Margin="30 30 30 30">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="0*" />
+            <RowDefinition Height="80*" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Border BorderBrush="Green" BorderThickness="0 0 0 3" Grid.Row="0" VerticalAlignment="Top"
+                HorizontalAlignment="Left">
+            <StackPanel HorizontalAlignment="Left">
+                <Button x:Name="PART_BackButton"
+                    Click="PART_BackButton_Click"
+                    Width="40"
+                    Height="40"
+                    VerticalAlignment="Bottom"
+                    Style="{DynamicResource MetroCircleButtonStyle}"
+                    FontFamily="Segoe UI Symbol"
+                    FontSize="16"
+                    DockPanel.Dock="Left">
+                    <Rectangle Width="20" Height="15">
+                        <Rectangle.Fill>
+                            <VisualBrush Stretch="Fill">
+                                <VisualBrush.Visual>
+                                    <Canvas Width="48"
+                                        Height="48"
+                                        Clip="F1 M 0,0L 48,0L 48,48L 0,48L 0,0"
+                                        UseLayoutRounding="False">
+                                        <Path Canvas.Left="12"
+                                          Canvas.Top="15"
+                                          Width="25"
+                                          Height="18"
+                                          Fill="{DynamicResource BlackBrush}"
+                                          Data="F1 M 12,22L 12,26L 28.25,26L 21,33L 27.5,33L 37,24L 27.5,15L 21,15L 28.25,22L 12,22 Z "
+                                          Stretch="Fill" />
+                                    </Canvas>
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Button.LayoutTransform>
+                        <ScaleTransform ScaleX="-1" />
+                    </Button.LayoutTransform>
+                </Button>
+
+            </StackPanel>
+        </Border>
+
+
+        <StackPanel  Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal" FlowDirection="RightToLeft">
+            <Button Width="150" Content="Search"
+                         Command="{Binding wordData.SearchCommand}" 
+                         Style="{DynamicResource SquareButtonStyle}" BorderBrush="#FFB3C9F9"/>
+            <TextBox x:Name="searchtxt" Text="{Binding wordData.SearchWordName}"
+                     Margin="10,0" Width="239"/>
+
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="4">
+            <Label x:Name="tyn" Margin="240,2,230,2" Height="30" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <DataGrid Name="grid1" ItemsSource="{Binding  wordData.AllWords, IsAsync=True}"
+                SelectedItem="{Binding wordData.GridSelectedItem}"
+                  CanUserAddRows="False"
+                  AutoGenerateColumns="False" 
+                  AlternationCount="2" AlternatingRowBackground="#FFE9E9F2"
+            Sorting="DataGrid_Sorting"
+            TargetUpdated="DataGrid_TargetUpdated"
+            Loaded="DataGrid_Loaded" >
+
+                <DataGrid.Columns>
+
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Width="50" Content="Detail" Click="Button_Click"
+                                    CommandParameter="{Binding word_id}"
+                                     Style="{DynamicResource SquareButtonStyle}">
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Width="50" Content="Video's" Click="All_KinnectVideos_Click"
+                                    CommandParameter="{Binding word_id}"
+                                     Style="{DynamicResource SquareButtonStyle}">
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Item Name" Width="SizeToCells" MinWidth="225" Binding="{Binding Name}" IsReadOnly="True" CanUserSort="False"  />
+                    <DataGridTextColumn Header="Item Type" Width="SizeToCells" MinWidth="200" Binding="{Binding WordType, Converter={StaticResource WordTypeConverter}}" IsReadOnly="True" CanUserSort="False"  />
+                    <DataGridTextColumn Header="Video Counter" Width="SizeToCells" MinWidth="140" Binding="{Binding  videoCount}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Language" Width="SizeToCells" MinWidth="100" Binding="{Binding Languages.Name}" IsReadOnly="True" CanUserSort="False" />
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </StackPanel>
+
+        <StackPanel
+            Margin="4"
+            Grid.Row="3"
+            Grid.ColumnSpan="2"
+            Orientation="Horizontal"
+            HorizontalAlignment="Center">
+            <Button                
+                Margin="4,0"
+                Content="&lt;&lt;"
+                Command="{Binding wordData.FirstCommand,
+                            UpdateSourceTrigger=PropertyChanged}"/>
+            <Button
+                Margin="4,0"
+                Content="&lt;"
+                Command="{Binding wordData.PreviousCommand,
+                            UpdateSourceTrigger=PropertyChanged}"/>
+            <StackPanel
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <!--<TextBlock
+                    Text="{Binding wordData.Start}"/>
+                <TextBlock
+                    Text=" to "/>
+                <TextBlock
+                    Text="{Binding wordData.End}"/>
+                <TextBlock
+                    Text=" of "/>
+                <TextBlock
+                    Text="{Binding wordData.TotalItems}"/>-->
+                <TextBlock
+                    Text="{Binding
+                            wordData.Start,
+                            UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock
+                    Text=" to "/>
+                <TextBlock
+                    Text="{Binding
+                            wordData.End,
+                            UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock
+                    Text=" of "/>
+                <TextBlock
+                    Text="{Binding
+                            wordData.TotalItems,
+                            UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <Button
+                Margin="4,0"
+                Content="&gt;"
+                Command="{Binding wordData.NextCommand,
+                            UpdateSourceTrigger=PropertyChanged}"/>
+            <Button
+                Margin="4,0"
+                Content="&gt;&gt;"
+                Command="{Binding wordData.LastCommand,
+                            UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+
+
+
+
+    </Grid>
+</Window>

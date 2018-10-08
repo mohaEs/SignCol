@@ -1,0 +1,79 @@
+﻿<Window x:Class="Sign_Language_Capture_Kinnect.Views.Words.NewVideo_Kinect"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sign_Language_Capture_Kinnect.Views.Words"
+        mc:Ignorable="d"
+             xmlns:vm="clr-namespace:DbModel.ViewModel.WordsVM;assembly=DbModel"
+             xmlns:vc="clr-namespace:DbModel.ValueConvert;assembly=DbModel" 
+			 xmlns:mvvm="http://www.galasoft.ch/mvvmlight"
+             xmlns:oxy="http://oxyplot.org/wpf"
+             d:DataContext="{d:DesignInstance vm:WordVideoVM}" 
+             FontFamily="Tahoma" xml:lang="Fa-IR"
+             Width="500" Height="500"
+             WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <!-- Value Converters -->
+        <!--<vm:ChartVM x:Key="ChartVM" />-->
+        <vc:ToIntConverter x:Key="ToIntConverter"/>
+    </Window.Resources>
+    <Grid Margin="30 30 30 30">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="5*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Label Content="Item" Grid.Row="1" Grid.Column="0" ></Label>
+        <Label Content="Corresponding video" Grid.Row="2" Grid.Column="0" ></Label>
+
+
+        <StackPanel  Grid.Row="0" Grid.Column="0">
+            <Button Width="150" Content="Choose User" Click="Choose_User_Click"
+                    Style="{DynamicResource SquareButtonStyle}"/>
+        </StackPanel>
+        <StackPanel  Grid.Row="0" Grid.Column="1">
+            <Label x:Name="User_id"></Label>
+            <Label Content="{Binding VideoData.euser.User_id, ValidatesOnDataErrors=True, Mode=TwoWay}"></Label>
+        </StackPanel>
+
+        <StackPanel  Grid.Row="1" Grid.Column="1">
+            <Label Name="Name" Content="{Binding VideoData.eword.Name}"/>
+        </StackPanel>
+
+        <StackPanel  Grid.Row="2" Grid.Column="1" Grid.RowSpan="3">
+            <Button Content="Choose Video" Command="{Binding VideoData.SelectPictureCommand}"/>
+            <MediaElement Source="{Binding VideoData.AttachPicture}"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Stretch="Fill" />
+
+        </StackPanel>
+
+
+        <StackPanel  Grid.Row="3" Grid.Column="1">
+            <TextBlock Text="{Binding VideoData.ValidationErrorsString}" Foreground="Red" Margin="0,5,0,0" />
+        </StackPanel>
+        <StackPanel  Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right">
+
+            <Button Width="100" Content="Update"
+                         Command="{Binding VideoData.UpdateCommand}"
+                         Style="{DynamicResource SquareButtonStyle}"/>
+
+            <Button Width="100" Content="Insert"
+                         Command="{Binding VideoData.InsertCommand}" 
+                         Style="{DynamicResource SquareButtonStyle}"/>
+
+            <Button Width="100" Content="Delete"
+                         Command="{Binding VideoData.DeleteCommand}" 
+                         Style="{DynamicResource SquareButtonStyle}"/>
+
+        </StackPanel>
+    </Grid>
+</Window>
