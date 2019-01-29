@@ -25,6 +25,10 @@ if you found this software usefull, please cite the following paper:
   organization={IEEE}
 }
 
+
+![Screenshot](SignCol.png)
+
+
 # Requirements
 
 Followings are the requirements for a PC for compatibility with the Kinect v2 and SignCol: 
