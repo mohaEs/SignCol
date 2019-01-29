@@ -46,6 +46,8 @@ Followings are the requirements for a PC for compatibility with the Kinect v2 an
 SignCol is an open source software is developed by **Visual Studio Community 2015** based on **c#**, **Windows Presentation Foundation (WPF)** graphical subsystem along with Model View View Model (MVVM) architecture. The database is generated and managed by **SQLite** engine. The database contains tables for options, capturing items, languages, videos, and performers. Language table consists of defined language IDs. Name, age, and phone number are the fields of the performer table. Item table includes item id, corresponding language id, type id and its name. The video table contains video id, folder path, performer id, and item id. The location of the database is in the "App_Data" of the project. The database could be edited manually by using **"DB Browser for SQLite"**.
 
 
+
+# More
 Executable bin files and more descriptions/videos at following link:
 
 http://display.sbu.ac.ir/softwares/
