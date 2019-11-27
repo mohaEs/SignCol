@@ -21,10 +21,11 @@ The main features of SignCol is
 # Paper
 if you found this software usefull, please cite the following paper:
 
-@inproceedings{SignCol,
-  title={SignCol: Open-Source Software for Collecting Sign Language Gestures },
-  author={Mohammad Eslami and Mahdi Karami and Sedigheh Eslami and Solale Tabarestani and Farah Torkamani-Azar and Christoph Meinel},
-  booktitle={Software Engineering and Service Science (ICSESS), 2018 9th IEEE International Conference on},
+@inproceedings{eslami2018signcol,
+  title={SignCol: Open-Source Software for Collecting Sign Language Gestures},
+  author={Eslami, Mohammad and Karami, Mahdi and Eslami, Sedigheh and Meinel, Christoph},
+  booktitle={2018 IEEE 9th International Conference on Software Engineering and Service Science (ICSESS)},
+  pages={365--369},
   year={2018},
   organization={IEEE}
 }
