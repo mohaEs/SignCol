@@ -30,6 +30,9 @@ if you found this software usefull, please cite the following paper:
   organization={IEEE}
 }
 
+The version published by IEEExplore is destructed by conference editors, but you the proper preprint version is available at Arxiv:
+https://arxiv.org/pdf/1911.00071.pdf
+
 
 ![Screenshot](SignCol.png)
 
