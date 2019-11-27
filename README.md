@@ -48,7 +48,7 @@ SignCol is an open source software is developed by **Visual Studio Community 201
 
 
 # More
-Executable bin files and more descriptions/videos at following link:
+Also, executable bin files and more descriptions/videos at following link:
 
 http://display.sbu.ac.ir/softwares/
 
