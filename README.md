@@ -8,6 +8,10 @@
 This is a Microsoft Kinect-based open source software, called **SignCol**, for capturing and saving the gestures used in sign languages. Our work supports creating a **multi-language database** and reports the recorded items **statistics**. SignCol can capture and store **colored(RGB) frames**,**depth frames**, **infrared frames**, **body index frames**, **coordinate mapped color-body frames**, **skeleton information** of each frame and camera parameters **simultaneously**.
 
 
+The demonstration videos are available at:
+- part 1: Capturing: https://youtu.be/_dgcK-HPAak
+- part 2: Databse mandaging: https://youtu.be/yMjQ1VYWbII
+
 The main features of SignCol is 
 - Captuting visual data 
 - Defing the numbers, words, sentences and etc at the database 
