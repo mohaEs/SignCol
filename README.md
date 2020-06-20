@@ -61,8 +61,7 @@ Also, executable bin files and more descriptions/videos at following link:
 http://display.sbu.ac.ir/softwares/
 
 # To do more (suggestion)
- This version did not used async for saving files to hard drive (saving session button).
+ This version did not use **Async Await** for saving files to hard drive (saving session button).
  It may cause crash if hard drive is low speed or RAM amount is not large enough.
- It is suggested to use async manner for this part. I will do it if I have enough time. If not, please consider it by yourself.
+ It is suggested to use **Async Await** manner for this part. I will do it if I have enough time. If not, please consider it by yourself.
  
-
